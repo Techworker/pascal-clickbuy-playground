@@ -11,12 +11,12 @@ $(function() {
     }
 
     $('#private-key-auth').on('click', function(e) {
-        wallet.authenticate($("#private-key-enc").val(), $("#private-key-password").val());
+        wallet.authenticate($("#private-key-enc").val().trim(), $("#private-key-password").val());
         if(!wallet.isAuthenticated()) {
             alert('Unable to authenticate with given credentials');
         } else {
             $("#auth-btn").hide();
-            window.location.hash = '#' + $("#private-key-enc").val();
+            window.location.hash = '#' + $("#private-key-enc").val().trim();
             wallet.getAccountsOfKey().then(function(accountList) {
                 accounts = accountList;
                 if(accountList.length === 0) {
