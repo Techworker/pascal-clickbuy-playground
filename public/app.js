@@ -153,7 +153,7 @@ $(function() {
         var payload = JSON.stringify({
             x: x, y: y, color: color
         });
-        let op = wallet.initiateSendTo(account, 1, price);
+        let op = wallet.initiateSendTo(account, 8, price);
         op.withPayload(payload);
         wallet.sendTo(op, true).then(function(o) {
             if(o.valid === false) {
