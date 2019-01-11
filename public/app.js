@@ -41,11 +41,21 @@ $(function() {
             }
 
             applyToGrid(data.grid);
+            updateEvents(data.events);
 
             setTimeout(function() {
                 grid();
             }, 1000);
         });
+    }
+
+    function updateEvents(events)
+    {
+        var html = '';
+        for(var i = 0; i < events.length; i++) {
+            html += ' - ' + events[i].msg + "\n";
+        }
+        $("#events").html(html);
     }
 
     function owned(restart) {

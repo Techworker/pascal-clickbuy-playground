@@ -27,33 +27,37 @@ require_once __DIR__ . '/../bootstrap.php';
 <h1>ClickBuy with PascalCoin</h1>
 
     <div class="row">
-        <div class="col-md-4">
-            <table id="grid" border="1">
-            </table>
+        <div class="col-md-12">
+            <button id="auth-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
+                Authenticate to buy
+            </button>
         </div>
-        <div class="col-md-8">
-            Boxes you own
-            <table class="table" id="owned">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Account</th>
-                    <th scope="col">Current Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-6">
+                <table id="grid" border="1">
+                </table>
+            </div>
+            <div class="col-md-6">
+                Boxes you own
+                <table class="table" id="owned">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Account</th>
+                        <th scope="col">Current Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <pre id="events"></pre>
+            </div>
         </div>
     </div>
-</div>
-<div id="owned">
-
-</div>
-<button id="auth-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
-    Authenticate
-</button>
-
 </div>
 <div class="modal fade" id="auth-modal" tabindex="-1" role="dialog" aria-labelledby="auth" aria-hidden="true">
     <div class="modal-dialog" role="document">

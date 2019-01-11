@@ -19,7 +19,7 @@ foreach($all as $grid) {
     ];
 }
 foreach($events as $ev) {
-    $json['events'] = [
+    $json['events'][] = [
         'ts' => $ev->ts,
         'msg' => $ev->msg
     ];

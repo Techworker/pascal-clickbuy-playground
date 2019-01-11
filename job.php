@@ -34,7 +34,7 @@ function calculateGrid()
         $op = \Database\getLatestOp($grid->id);
         if ($op !== false) {
             if ($grid->ophash !== $op->ophash) {
-                \Database\addEvent('Account ' . $op->sender . ' bought ' . $op->x . ':' . $op->y . ' for ' . $grid->price . 'PASC');
+                \Database\addEvent('Account ' . $op->sender . ' bought ' . $op->x . ':' . $op->y . ' for ' . ($grid->price/10000) . 'PASC');
                 $grid->color = $op->color;
                 $grid->sender = $op->sender;
                 $grid->ophash = $op->ophash;
