@@ -37,30 +37,11 @@ require_once __DIR__ . '/../bootstrap.php';
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Account</th>
+                    <th scope="col">Current Price</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -69,7 +50,7 @@ require_once __DIR__ . '/../bootstrap.php';
 <div id="owned">
 
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
+<button id="auth-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
     Authenticate
 </button>
 
@@ -87,11 +68,11 @@ require_once __DIR__ . '/../bootstrap.php';
                 <form>
                     <div class="form-group">
                         <label for="private-key-enc" class="col-form-label">Encrypted Private key:</label>
-                        <textarea class="form-control" id="private-key-enc">53616C7465645F5F0BEE27AC4D30834BFCF09570AD40C3BA9F8DC45310A996E78D7B15566AE7D2BD2EA108681FE6A3C5F6A619364C7BC97FB42BCF0A5D60BC92</textarea>
+                        <textarea class="form-control" id="private-key-enc"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="private-key-password" class="col-form-label">Password:</label>
-                        <input type="password" class="form-control" id="private-key-password" value="test123">
+                        <input type="password" class="form-control" id="private-key-password" value="">
                     </div>
                 </form>
             </div>

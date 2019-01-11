@@ -3,12 +3,20 @@ $(function() {
     var pascal = window.pascalcoin;
     var wallet = new pascal.Wallet('proxy.php');
     var accounts = [];
+    var ownedBoxes = {};
+    if(window.location.hash !== '') {
+        $("#private-key-enc").val(window.location.hash.substr(1));
+        $('#auth-modal').modal('show');
+        $("#private-key-password").focus();
+    }
 
     $('#private-key-auth').on('click', function(e) {
         wallet.authenticate($("#private-key-enc").val(), $("#private-key-password").val());
         if(!wallet.isAuthenticated()) {
             alert('Unable to authenticate with given credentials');
         } else {
+            $("#auth-btn").hide();
+            window.location.hash = '#' + $("#private-key-enc").val();
             wallet.getAccountsOfKey().then(function(accountList) {
                 accounts = accountList;
                 if(accountList.length === 0) {
@@ -43,17 +51,26 @@ $(function() {
     function owned(restart) {
         console.log({accounts: accounts.map(function(a) { return a.account.account;})});
         $.get('/api/owned.php', {accounts: accounts.map(function(a) { return a.account.account;})}).then(function (data) {
-            var html = '<ul>';
+
+            var html = '';
+            ownedBoxes = {};
             for(var i = 0; i < data.length; i++) {
                 var box = data[i];
-                html += '<li>' + box.account + ' -> ' +  box.x + ':' + box.y + '</li>';
+                html += '<tr data-box="box-' + box.x + '-' + box.y + '">';
+                html += '<td>' + box.x + ':' + box.y + '</td>';
+                html += '<td>' + box.account + '</td>';
+                html += '<td>' + box.price/10000 + ' PASC</td>';
+                html += '</tr>';
+                if(ownedBoxes[box.x.toString()] === undefined) {
+                    ownedBoxes[box.x.toString()] = {};
+                }
+                ownedBoxes[box.x.toString()][box.y.toString()] = true;
             }
-            html += '</ul>';
-            $("#owned").html(html);
+            $("#owned tbody").html(html);
 
             if(restart) {
                 setTimeout(function () {
-                    owned();
+                    owned(true);
                 }, 5000);
             }
         });
@@ -79,9 +96,13 @@ $(function() {
                         return;
                     }
 
-                    $('#buy-modal').modal('show');
                     var x = $(this).data('x');
                     var y = $(this).data('y');
+
+                    if(ownedBoxes[x] !== undefined && ownedBoxes[x][y] === true) {
+                        alert('You already own that box!');
+                        return;
+                    }
                     var color = $(this).data('color');
                     var owner = $(this).data('owner');
                     var price = $(this).data('price');
@@ -93,6 +114,7 @@ $(function() {
                     $("#buy-x").html(x);
                     $("#buy-y").html(y);
                     $("#buy-price").html(price / 10000);
+                    $('#buy-modal').modal('show');
                 });
             }
         }
