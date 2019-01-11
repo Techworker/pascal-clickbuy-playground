@@ -1,0 +1,141 @@
+$(function() {
+
+    var pascal = window.pascalcoin;
+    var wallet = new pascal.Wallet('proxy.php');
+    var accounts = [];
+
+    $('#private-key-auth').on('click', function(e) {
+        wallet.authenticate($("#private-key-enc").val(), $("#private-key-password").val());
+        if(!wallet.isAuthenticated()) {
+            alert('Unable to authenticate with given credentials');
+        } else {
+            wallet.getAccountsOfKey().then(function(accountList) {
+                accounts = accountList;
+                if(accountList.length === 0) {
+                    alert('No accounts for this key.');
+                } else {
+                    $('#auth-modal').modal('hide');
+                }
+
+                for(var i = 0; i < accountList.length; i++) {
+                    $('#buy-account').append($('<option>', {value:accountList[i].account.toString(), text: accountList[i].account.toString()}));
+                }
+                owned(true);
+            });
+        }
+    });
+
+    var inited = false;
+    function grid() {
+        $.get('/api/grid.php').then(function (data) {
+            if(!inited) {
+                createGrid(data.grid);
+            }
+
+            applyToGrid(data.grid);
+
+            setTimeout(function() {
+                grid();
+            }, 1000);
+        });
+    }
+
+    function owned(restart) {
+        console.log({accounts: accounts.map(function(a) { return a.account.account;})});
+        $.get('/api/owned.php', {accounts: accounts.map(function(a) { return a.account.account;})}).then(function (data) {
+            var html = '<ul>';
+            for(var i = 0; i < data.length; i++) {
+                var box = data[i];
+                html += '<li>' + box.account + ' -> ' +  box.x + ':' + box.y + '</li>';
+            }
+            html += '</ul>';
+            $("#owned").html(html);
+
+            if(restart) {
+                setTimeout(function () {
+                    owned();
+                }, 5000);
+            }
+        });
+    }
+
+    function createGrid(data) {
+        var l = Math.sqrt(data.length);
+        var html = '';
+        for(x = 1; x <= l; x++) {
+            html += '<tr>';
+            for(y = 1; y <= l; y++) {
+                html += '<td data-toggle="tooltip" data-placement="top" title="Box ' + x + ':' + y + '" data-x="' + x + '" data-y="' + y + '" id="box-' + x + '-' + y + '"></td>';
+            }
+            html += '</tr>';
+        }
+        $('#grid')[0].innerHTML = html;
+
+        for(x = 1; x <= l; x++) {
+            for(y = 1; y <= l; y++) {
+                $("#box-" + x + '-' + y).on('click', function(e) {
+                    if(!wallet.isAuthenticated()) {
+                        $('#auth-modal').modal('show');
+                        return;
+                    }
+
+                    $('#buy-modal').modal('show');
+                    var x = $(this).data('x');
+                    var y = $(this).data('y');
+                    var color = $(this).data('color');
+                    var owner = $(this).data('owner');
+                    var price = $(this).data('price');
+                    if(owner == 0) {
+                        owner = 'System';
+                    }
+                    $("#buy-owner").html(owner);
+                    $("#buy-color").val('#' + color);
+                    $("#buy-x").html(x);
+                    $("#buy-y").html(y);
+                    $("#buy-price").html(price / 10000);
+                });
+            }
+        }
+
+    }
+
+    function applyToGrid(data) {
+        for(var i = 0; i < data.length; i++) {
+            var box = data[i];
+            var $html = $("#box-" + box.x + '-' + box.y);
+            $html.css("background-color", '#' + box.color);
+            $html.attr('data-color', box.color);
+            $html.attr('data-owner', box.account);
+            $html.attr('data-price', box.price);
+        }
+    }
+    grid();
+
+    $("#buy-button").on('click', function(e) {
+        var color = $("#buy-color").val();
+        var account = $("#buy-account").val();
+        var x = $("#buy-x").html();
+        var y = $("#buy-y").html();
+        var price = $("#buy-price").html();
+
+        var payload = JSON.stringify({
+            x: x, y: y, color: color
+        });
+        let op = wallet.initiateSendTo(account, 1, price);
+        op.withPayload(payload);
+        wallet.sendTo(op, true).then(function(o) {
+            if(o.valid === false) {
+                alert('Error: ' + o.errors);
+            } else {
+                $('#buy-modal').modal('hide');
+            }
+            owned(false);
+        }).catch(function(e) {
+            alert('Something went wrong.');
+            console.log(e);
+        });
+        return false;
+    })
+
+    $('[data-toggle="tooltip"]').tooltip();
+});
