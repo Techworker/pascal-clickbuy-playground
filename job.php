@@ -39,7 +39,7 @@ do {
     }
 
     calculateGrid();
-    sleep(1);
+    sleep(2);
 } while(true);
 
 function calculateGrid()
