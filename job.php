@@ -12,14 +12,30 @@ function hexToStr($hex){
 
 do {
     $allPendings = \Pascal\getPendings();
-    $accountOps = \Pascal\rpc('getaccountoperations', ['account' => ACCOUNT]);
-    //$accountOps = array_reverse($accountOps);
 
-    foreach($allPendings as $op) {
-        updateOp($op);
+    $allGrid = \Database\getCompleteGrid();
+    $checked = [];
+
+    foreach($allGrid as $g) {
+        if(isset($checked[$g->sender])) {
+            continue;
+        }
+        $checked[$g->sender] = true;
+        $accountOps = \Pascal\rpc('getaccountoperations', ['account' => $g->sender, 'depth' => 10]);
+        foreach($accountOps as $op) {
+            updateOp($op, $g->sender);
+        }
     }
-    foreach($accountOps as $op) {
-        updateOp($op);
+
+    $checked = [];
+    foreach($allPendings as $op) {
+        foreach($allGrid as $g) {
+            if(isset($checked[$g->sender])) {
+                continue;
+            }
+            $checked[$g->sender] = true;
+            updateOp($op, $g->sender);
+        }
     }
 
     calculateGrid();
@@ -46,11 +62,11 @@ function calculateGrid()
     }
 }
 
-function updateOp($operation)
+function updateOp($operation, $r)
 {
     foreach($operation['receivers'] as $idx => $receiver)
     {
-        if((int)$receiver['account'] == ACCOUNT && $receiver['payload'] !== '') {
+        if((int)$receiver['account'] == $r && $receiver['payload'] !== '') {
             $pl = json_decode(hexToStr($receiver['payload']), true);
             if($pl === null) {
                 continue;

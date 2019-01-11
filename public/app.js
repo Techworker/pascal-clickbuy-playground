@@ -116,7 +116,7 @@ $(function() {
                     var color = $(this).data('color');
                     var owner = $(this).data('owner');
                     var price = $(this).data('price');
-                    if(owner == 0) {
+                    if(owner == 8) {
                         owner = 'System';
                     }
                     $("#buy-owner").html(owner);
@@ -138,6 +138,7 @@ $(function() {
             $html.css("background-color", '#' + box.color);
             $html.attr('data-color', box.color);
             $html.attr('data-owner', box.account);
+            $html.data('owner', box.account);
             $html.attr('data-price', box.price);
         }
     }
@@ -146,6 +147,7 @@ $(function() {
     $("#buy-button").on('click', function(e) {
         var color = $("#buy-color").val();
         var account = $("#buy-account").val();
+        var owner = $("#buy-owner").html();
         var x = $("#buy-x").html();
         var y = $("#buy-y").html();
         var price = $("#buy-price").html();
@@ -153,7 +155,7 @@ $(function() {
         var payload = JSON.stringify({
             x: x, y: y, color: color
         });
-        let op = wallet.initiateSendTo(account, 8, price);
+        let op = wallet.initiateSendTo(account, owner, price);
         op.withPayload(payload);
         wallet.sendTo(op, true).then(function(o) {
             if(o.valid === false) {

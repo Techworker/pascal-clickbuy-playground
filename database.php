@@ -51,7 +51,7 @@ function addGrid(int $x, int $y) {
     $grid->x = $x;
     $grid->y = $y;
     $grid->color = 'FFFFFF';
-    $grid->sender = 0;
+    $grid->sender = ACCOUNT;
     $grid->ophash = '';
     $grid->iteration = 1;
     $grid->price = 100;
