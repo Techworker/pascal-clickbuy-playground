@@ -53,7 +53,7 @@ $(function() {
     {
         var html = '';
         for(var i = 0; i < events.length; i++) {
-            html += ' - ' + events[i].msg + "\n";
+            html += ' - ' + events[i].msg + "<br />";
         }
         $("#events").html(html);
     }

@@ -32,11 +32,11 @@ require_once __DIR__ . '/../bootstrap.php';
 
     <div class="row">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <table id="grid" border="1">
                 </table>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 Boxes you own
                 <div id="owned"></div>
                 <button id="auth-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
@@ -47,7 +47,8 @@ require_once __DIR__ . '/../bootstrap.php';
         </div>
         <div class="row">
             <div class="col-md-12">
-                <pre id="events"></pre>
+                <div class="card card-body bg-light" id="events">
+                </div>
             </div>
         </div>
     </div>
