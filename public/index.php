@@ -14,7 +14,7 @@ require_once __DIR__ . '/../bootstrap.php';
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>ClickBuy with PascalCoin.org</title>
+    <title>Buy a box with PascalCoin.org</title>
     <style>
         table#grid td {
             height: 20px !important;
@@ -28,7 +28,7 @@ require_once __DIR__ . '/../bootstrap.php';
 </head>
 <body>
 <div class="container">
-<h1>ClickBuy with PascalCoin</h1>
+<h1>Buy a box with PascalCoin</h1>
 
     <div class="row">
         <div class="col-md-6">
