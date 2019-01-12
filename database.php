@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS grid (
     id INTEGER PRIMARY KEY, 
     x INTEGER,
     y INTEGER,
-    color VARCHAR(6),
+    color VARCHAR(8),
     sender INTEGER,
     ophash VARCHAR(255),
     iteration INTEGER,
@@ -32,7 +32,7 @@ $db->exec('CREATE TABLE IF NOT EXISTS ops (
     opblock INTEGER,
     ophash VARCHAR(255),
     sender INTEGER,
-    color VARCHAR(6),
+    color VARCHAR(8),
     x INTEGER,
     y INTEGER,
     pending INTEGER,
@@ -46,11 +46,11 @@ function addEvent($msg) {
     $evt->save();
 }
 
-function addGrid(int $x, int $y) {
+function addGrid(int $x, int $y, $color) {
     $grid = \ORM::forTable('grid')->create();
     $grid->x = $x;
     $grid->y = $y;
-    $grid->color = 'FFFFFF';
+    $grid->color = $color;
     $grid->sender = ACCOUNT;
     $grid->ophash = '';
     $grid->iteration = 1;

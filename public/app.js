@@ -44,7 +44,7 @@ $(function() {
             updateEvents(data.events);
 
             setTimeout(function() {
-                grid();
+                //grid();
             }, 1000);
         });
     }
@@ -172,4 +172,10 @@ $(function() {
     })
 
     $('[data-toggle="tooltip"]').tooltip();
+
+    $(".use").on('click', function() {
+        $("#private-key-enc").val($(this).data('pk'));
+        $("#private-key-password").val($(this).data('pw'));
+        $('#auth-modal').modal('show');
+    })
 });
