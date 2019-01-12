@@ -39,8 +39,19 @@ require_once __DIR__ . '/../bootstrap.php';
             Boxes you own
             <div id="owned"></div>
             <button id="auth-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
-                Authenticate to buy
+                Authenticate to buy (or use acc below)
             </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+    <h3>Demo Accounts (click to authenticate):</h3>
+
+    <button class="use" data-pk="53616C7465645F5F001B357BA411AA71AC8BA6E00071E4CCD65F43C6B981A98F5A75E3B52448A2EE44B26FAFC5B2FE3E1485E0779EAAF342F2BB9BD4634E37E2" data-pw="test123">Use account 1</button>
+    <button class="use" data-pk="53616C7465645F5F1B4699A37C7577E446003CC15CABC918DA80959F64EE0F3714FA4D6960AA98192AFE5AD485B70ADFAA5E7D5D4E2080BABEB4756029E5F2D4" data-pw="test123">Use account 2</button>
+    <button class="use" data-pk="53616C7465645F5F881F0AC41E983E9F64A601D3925806681ABD1A8B025586846B1F5689323E6E7FB9F1B88C93D1FCD041ECCD7764D50A74B992FE9CABDAC775" data-pw="test123">Use account 3</button>
+    <button class="use" data-pk="53616C7465645F5F3D1355338350DE4F0060299E322CC6EFCC0E16C6272F9C992B36507CA5638FA2804D005DF40BB00D332B501D399CC50C030C46B8900B5306" data-pw="test123">Use account 4</button>
+    <button class="use" data-pk="53616C7465645F5F685CB1503467168154D17AA53AC0C990830EC5E89B4D4C4393F4DA24024C5A6C24DFFCE667BDCBA6FE5D72BD98C4AD5509F76041E64E9B6E" data-pw="test123">Use account 5</button>
         </div>
     </div>
     <div class="row">
@@ -49,13 +60,6 @@ require_once __DIR__ . '/../bootstrap.php';
             </div>
         </div>
     </div>
-    <h3>Demo Accounts (click to authenticate):</h3>
-
-    <button class="use" data-pk="53616C7465645F5F001B357BA411AA71AC8BA6E00071E4CCD65F43C6B981A98F5A75E3B52448A2EE44B26FAFC5B2FE3E1485E0779EAAF342F2BB9BD4634E37E2" data-pw="test123">Use account 1</button>
-    <button class="use" data-pk="53616C7465645F5F1B4699A37C7577E446003CC15CABC918DA80959F64EE0F3714FA4D6960AA98192AFE5AD485B70ADFAA5E7D5D4E2080BABEB4756029E5F2D4" data-pw="test123">Use account 2</button>
-    <button class="use" data-pk="53616C7465645F5F881F0AC41E983E9F64A601D3925806681ABD1A8B025586846B1F5689323E6E7FB9F1B88C93D1FCD041ECCD7764D50A74B992FE9CABDAC775" data-pw="test123">Use account 3</button>
-    <button class="use" data-pk="53616C7465645F5F3D1355338350DE4F0060299E322CC6EFCC0E16C6272F9C992B36507CA5638FA2804D005DF40BB00D332B501D399CC50C030C46B8900B5306" data-pw="test123">Use account 4</button>
-    <button class="use" data-pk="53616C7465645F5F685CB1503467168154D17AA53AC0C990830EC5E89B4D4C4393F4DA24024C5A6C24DFFCE667BDCBA6FE5D72BD98C4AD5509F76041E64E9B6E" data-pw="test123">Use account 5</button>
 
 
 </div>
