@@ -14,18 +14,6 @@ do {
     $allPendings = \Pascal\getPendings();
 
     $allGrid = \Database\getCompleteGrid();
-    $checked = [];
-
-    foreach($allGrid as $g) {
-        if(isset($checked[$g->sender])) {
-            continue;
-        }
-        $checked[$g->sender] = true;
-        $accountOps = \Pascal\rpc('getaccountoperations', ['account' => $g->sender, 'depth' => 10]);
-        foreach($accountOps as $op) {
-            updateOp($op, $g->sender);
-        }
-    }
 
     $checked = [];
     foreach($allPendings as $op) {
@@ -34,6 +22,18 @@ do {
                 continue;
             }
             $checked[$g->sender] = true;
+            updateOp($op, $g->sender);
+        }
+    }
+
+
+    foreach($allGrid as $g) {
+        if(isset($checked[$g->sender])) {
+            continue;
+        }
+        $checked[$g->sender] = true;
+        $accountOps = \Pascal\rpc('getaccountoperations', ['account' => $g->sender, 'depth' => 10]);
+        foreach($accountOps as $op) {
             updateOp($op, $g->sender);
         }
     }
