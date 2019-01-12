@@ -45,7 +45,7 @@ require_once __DIR__ . '/../bootstrap.php';
     </div>
     <div class="row">
         <div class="col-md-12">
-    <h3>Demo Accounts (click to authenticate):</h3>
+    <h3 style="margin-top: 24px;">Demo Accounts (click to authenticate):</h3>
 
     <button class="use" data-pk="53616C7465645F5F001B357BA411AA71AC8BA6E00071E4CCD65F43C6B981A98F5A75E3B52448A2EE44B26FAFC5B2FE3E1485E0779EAAF342F2BB9BD4634E37E2" data-pw="test123">Use account 1</button>
     <button class="use" data-pk="53616C7465645F5F1B4699A37C7577E446003CC15CABC918DA80959F64EE0F3714FA4D6960AA98192AFE5AD485B70ADFAA5E7D5D4E2080BABEB4756029E5F2D4" data-pw="test123">Use account 2</button>
