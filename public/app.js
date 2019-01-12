@@ -44,7 +44,7 @@ $(function() {
             updateEvents(data.events);
 
             setTimeout(function() {
-                //grid();
+                grid();
             }, 1000);
         });
     }
