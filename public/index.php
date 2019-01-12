@@ -32,23 +32,13 @@ require_once __DIR__ . '/../bootstrap.php';
 
     <div class="row">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <table id="grid" border="1">
                 </table>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-4">
                 Boxes you own
-                <table class="table" id="owned">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Account</th>
-                        <th scope="col">Current Price</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div id="owned"></div>
                 <button id="auth-btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#auth-modal">
                     Authenticate to buy
                 </button>

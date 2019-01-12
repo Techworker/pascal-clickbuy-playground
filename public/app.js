@@ -66,17 +66,13 @@ $(function() {
             ownedBoxes = {};
             for(var i = 0; i < data.length; i++) {
                 var box = data[i];
-                html += '<tr data-box="box-' + box.x + '-' + box.y + '">';
-                html += '<td>' + box.x + ':' + box.y + '</td>';
-                html += '<td>' + box.account + '</td>';
-                html += '<td>' + box.price/10000 + ' PASC</td>';
-                html += '</tr>';
+                html += '<span class="badge badge-primary">' + box.x + ':' + box.y + ' | ' + box.price/10000 + ' PASC</span>';
                 if(ownedBoxes[box.x.toString()] === undefined) {
                     ownedBoxes[box.x.toString()] = {};
                 }
                 ownedBoxes[box.x.toString()][box.y.toString()] = true;
             }
-            $("#owned tbody").html(html);
+            $("#owned").html(html);
 
             if(restart) {
                 setTimeout(function () {
