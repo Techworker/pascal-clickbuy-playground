@@ -46,11 +46,11 @@ function addEvent($msg) {
     $evt->save();
 }
 
-function addGrid(int $x, int $y, $color) {
+function addGrid(int $x, int $y) {
     $grid = \ORM::forTable('grid')->create();
     $grid->x = $x;
     $grid->y = $y;
-    $grid->color = $color;
+    $grid->color = 'FFFFFF';
     $grid->sender = ACCOUNT;
     $grid->ophash = '';
     $grid->iteration = 1;
