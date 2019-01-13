@@ -28,7 +28,7 @@ require_once __DIR__ . '/../bootstrap.php';
 </head>
 <body>
 <div class="container">
-<h1>Buy a box with PascalCoin</h1>
+<h1>Buy a box with PascalCoin (TESTNET ONLY!!)</h1>
 
     <div class="row">
         <div class="col-md-6">
