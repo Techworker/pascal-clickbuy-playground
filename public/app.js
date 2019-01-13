@@ -25,7 +25,9 @@ $(function() {
                     $('#auth-modal').modal('hide');
                 }
 
+                $('#buy-account').empty();
                 for(var i = 0; i < accountList.length; i++) {
+
                     $('#buy-account').append($('<option>', {value:accountList[i].account.toString(), text: accountList[i].account.toString()}));
                 }
                 owned(true);
