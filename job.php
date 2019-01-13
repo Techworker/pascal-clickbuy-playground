@@ -18,10 +18,10 @@ do {
     $checked = [];
     foreach($allPendings as $op) {
         foreach($allGrid as $g) {
-            if(isset($checked[$g->sender])) {
-                continue;
-            }
-            $checked[$g->sender] = true;
+            //if(isset($checked[$g->sender])) {
+            //    continue;
+            //}
+            //$checked[$g->sender] = true;
             updateOp($op, $g->sender);
         }
     }
