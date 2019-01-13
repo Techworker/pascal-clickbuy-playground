@@ -73,8 +73,8 @@ function getCompleteGrid() {
 function getLatestOp($gridId) {
     return \ORM::forTable('ops')
         ->where('grid_id', $gridId)
-        ->orderByDesc('ts')
         ->orderByDesc('pending')
+        ->orderByDesc('ts')
         ->orderByDesc('block')
         ->orderByDesc('opblock')
         ->limit(1)
