@@ -14,7 +14,7 @@ require_once __DIR__ . '/../bootstrap.php';
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Buy a box with PascalCoin.org</title>
+    <title>Buy a box with PascalCoin.org (TESTNET ONLY!!)</title>
     <style>
         table#grid td {
             height: 20px !important;
